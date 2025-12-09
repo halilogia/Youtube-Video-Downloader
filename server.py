@@ -308,11 +308,6 @@ if __name__ == '__main__':
 ║                     Backend Sunucusu                         ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Sunucu başlatılıyor...                                      ║
-║  Adres: http://localhost:5000                                ║
-║                                                              ║
-║  ⚠️  FFmpeg kurulu olduğundan emin olun!                     ║
-║      Windows: winget install Gyan.FFmpeg                     ║
-║      Mac: brew install ffmpeg                                ║
 ╚══════════════════════════════════════════════════════════════╝
     """)
     
@@ -323,4 +318,8 @@ if __name__ == '__main__':
     else:
         print("✅ FFmpeg bulundu.\n")
     
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    # Production için PORT environment variable kullan
+    port = int(os.environ.get('PORT', 5000))
+    print(f"🌐 Adres: http://localhost:{port}\n")
+    app.run(debug=False, port=port, host='0.0.0.0')
+
